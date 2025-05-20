@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Recettes";
+}
+@model IEnumerable<Recette>
+
+
+<h1>Liste des Recettes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Origine</th>
+            <th>Ingrédients</th>
+            <!-- Add other columns as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recette in Model)
+        {
+            <tr>
+                <td>@recette.Nom</td>  <!-- Assuming you have a Nom property -->
+                <td>@recette.TypeAliment?.Nom</td>  <!-- Assuming TypeAliment has a Name property -->
+                <td>@recette.OrigineAliment?.Nom</td>  <!-- Assuming OrigineAliment has a Name property -->
+                <td>
+                    @foreach (var ingredient in recette.Ingredients)
+                    {
+                        @ingredient.Nom <br />  <!-- Assuming Ingredient has a Name property -->
+                    }
+                
+                <!-- Add other properties as needed -->
+            </tr>
+        }
+    </tbody>
+</table>
